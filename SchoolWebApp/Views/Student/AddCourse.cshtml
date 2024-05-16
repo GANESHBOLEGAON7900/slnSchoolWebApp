@@ -1,0 +1,51 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+@model SchoolWebApp.Models.Entities.Course
+
+<h4>Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddCourse" asp-controller="Student" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstructorID" class="control-label"></label>
+
+                <select asp-for="InstructorID" class="form-control">
+                    <option selected>select opiton</option>
+
+                    <option value="1">Tejus</option>
+                    <option value="2">Rajat</option>
+                    <option value="3">Nirbhay</option>
+
+                </select>
+                @*  asp-items="ViewBag.InstructorID"      (List<Instructor>)TempData["Instructor"]) *@
+                @* @(TempData["Instructor"] = ) *@
+                @*  @foreach (var item in ((List<Instructor>)ViewBag.Instructor))
+                {
+                <select asp-for="InstructorID" class="form-control" >
+                <option value=@Html.DisplayFor(model => item.ID)>@Html.DisplayFor(model => item.ID)</option>
+                </select>
+                } *@
+                <br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Course" class="btn btn-primary" asp-action="AddCourse" asp-route-id="" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Homepage">Back to List</a>
+</div>
+

@@ -1,0 +1,51 @@
+﻿@model SchoolWebApp.Models.Entities.Student
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<div class="col-lg-5">
+    <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+        <div class="card-body">
+            <form asp-action="Login" asp-controller="Student" method="post">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                @Html.AntiForgeryToken()
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="inputEmail" type="Email" asp-for=Email placeholder="name@example.com" />
+                    <label for="inputEmail">Email</label>
+                    <span asp-validation-for=Email class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="inputPassword" type="password" asp-for=Password placeholder="Password" />
+                    <label for="inputPassword">Password</label>
+                    <span asp-validation-for=Password class="text-danger"></span>
+                </div>
+                <div class="align-items-center justify-content-between mt-4 mb-0">
+                    <button class="btn btn-primary" style="float:right;" type="submit" asp-action="Login" asp-controller="Student">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-center py-3">
+            <div class="small">
+                <a asp-action="Registration" asp-controller="Student">Need an account? Register!</a>
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+
+@* https://stackoverflow.com/questions/32645632/asp-net-do-i-need-to-add-javascript-source-of-validationscriptspartial-cshtml *@
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

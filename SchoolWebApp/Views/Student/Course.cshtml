@@ -1,0 +1,118 @@
+﻿@using SchoolWebApp.Models.Entities
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@model SchoolWebApp.Models.Entities.Student
+
+<div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                       
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                       
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @(((Student)ViewBag.lst).Email)
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses)
+                       
+                    </th>
+                    
+                   
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        
+
+                    <tr>
+                    <td>
+                        @(((Student)ViewBag.lst).ID)
+                @*         @Html.DisplayNameFor(model => model.ID) *@
+                    </td>
+                        <td>
+                        @(((Student)ViewBag.lst).FirstName)
+                            @Html.DisplayFor(model => model.FirstName)
+                        </td>
+                    <td>
+                        @(((Student)ViewBag.lst).LastName)
+                        @Html.DisplayFor(model => model.LastName)
+                    </td>
+                    <td>
+                        @(((Student)ViewBag.lst).Email)
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                      @*   <td>
+                        @(TempData["Courses"] = ((Student)ViewBag.lst).Courses)
+                        @foreach (var course in (List<Course>)TempData["Courses"])
+                        {
+                            @Html.DisplayNameFor(model => course.ID)
+                            @Html.DisplayNameFor(model => course.Name)
+
+
+                        }
+                        </td> *@
+                      
+                       
+                        <td>
+                            <a asp-action="Edit" asp-route-id=model.ID>Edit</a> 
+                            <a asp-action="Details" asp-route-id=model.ID>Details</a> 
+                            <a asp-action="Delete" asp-route-id=model.ID>Delete</a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    @* <th>@Html.DisplayNameFor((Course)TempData["Courses"]=> {return (Course)TempData["Courses"]).ID)}</th> *@
+                   <th>CourseID</th>
+                    <th>Name</th>
+                    <th>InstructorID</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                
+                   @*  @(TempData["Courses"] = ((Student)ViewBag.lst).Courses) *@
+                    @foreach (var course in ((Student)ViewBag.lst).Courses)
+                    {
+                    <tr>
+                        <td> @(TempData["ID"] = course.ID)@*) @Html.DisplayFor(model => course.ID) *@</td>
+                        <td>@(TempData["ID"] = course.Name) @* @Html.DisplayFor(model => course.Name) *@</td>
+                        <td>@(TempData["ID"] = course.InstructorID) @* @Html.DisplayFor(model => course.InstructorID) *@</td>
+                    </tr>
+                    }
+                   
+             
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <a asp-action="AddCourse" asp-controller="Student"> <input type="submit" value="Add Course" /></a>
+        <a asp-action="RemoveCourse" asp-controller="Student">  <input type="submit" value="Remove Course" /></a>
+       
+    </div>
+
+    <div><input type="submit" value="Add Instructor" /></div>
+    <div><input type="submit" value="Add Course" /></div>
+
+</div>
